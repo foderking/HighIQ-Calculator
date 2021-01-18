@@ -10,7 +10,7 @@ def arithmetic(arg, first, second):
     """This function performs basic arithmetic on two numbers.
     it expects two numbers and an argument parameter to determine which arithmetic operation to perfom.
     return the resulting integer.
-    # arguments should have already been mapped to the set variables
+    # arguments have already been mapped to the set variables
     Arguments:
     A = additon
     D = division
@@ -19,6 +19,15 @@ def arithmetic(arg, first, second):
     m = remainder / modulus
     """
     # arguments are stored in a dictionary, the string directly represents it.
+
+    if arg not in arith.keys():
+        raise ValueError(f'\n\tYou did not give a valid argument\nValid arguments are {tuple(arith.keys())}.')
+    try:
+        first = float(first)
+        second = float(second)
+    except:
+        raise ValueError('\n\tYou need to give a valid number as an argument!!')
+
     return arith[arg](first, second)
 
 def boolean(*args):
@@ -59,5 +68,6 @@ if __name__ == '__main__' :
     """the program starts with an iteractive environment. essentially a while loop to wait for the next instruction
     other environments can be specified.
     """
-    test_ar()
+
+    arithmetic(4,25,235)
 
