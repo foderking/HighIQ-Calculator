@@ -30,27 +30,26 @@ def conv( value, from_, to_):
     	return oct(answer)
     return '{:,}'.format(answer) 
 
-if sys.argv[1] == 'bit':
-	no = sys.argv[2]	
-	b_ = '1' * int(no)
-	b_to = sys.argv[3]
-	b_from = 'b'
-elif len(sys.argv) < 2:
-    print("You didn't put enough arguments")
-    sys.exit()
-elif len(sys.argv) > 3:
-    b_from = sys.argv[1]
-    b_to  = sys.argv[2]
-    b_ = sys.argv[3]
-elif len(sys.argv) == 2:
-	b_from = 'x'
-	b_to = 'd'
-	b_ = sys.argv[-1]
-else:
-    b_from = sys.argv[1]
-    b_to  = 'd'
-    b_ = sys.argv[2]
+def main():
+    if sys.argv[1] == 'bit':
+    	no = sys.argv[2]	
+    	b_ = '1' * int(no)
+    	b_to = sys.argv[3]
+    	b_from = 'b'
+    elif len(sys.argv) < 2:
+        print("You didn't put enough arguments")
+        sys.exit()
+    elif len(sys.argv) > 3:
+        b_from = sys.argv[1]
+        b_to  = sys.argv[2]
+        b_ = sys.argv[3]
+    elif len(sys.argv) == 2:
+    	b_from = 'x'
+    	b_to = 'd'
+    	b_ = sys.argv[-1]
+    else:
+        b_from = sys.argv[1]
+        b_to  = 'd'
+        b_ = sys.argv[2]
 
-print(conv(b_, b_from, b_to))
-
-# print(comma(1234567834542524))
+    print(conv(b_, b_from, b_to))
