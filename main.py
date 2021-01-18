@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import bc
+import bc, os
 from library import *
 from varname import nameof
 
@@ -21,24 +21,44 @@ def arithmetic(arg, first, second):
     # arguments are stored in a dictionary, the string directly represents it.
 
     if arg not in arith.keys():
-        raise ValueError(f'\n\tYou did not give a valid argument\nValid arguments are {tuple(arith.keys())}.')
+        raise ValueError(f'You did not give a valid argument\nValid arguments are {tuple(arith.keys())}.')
     try:
         first = float(first)
         second = float(second)
     except:
-        raise ValueError('\n\tYou need to give a valid number as an argument!!')
+        raise ValueError('You need to give a valid number as an argument!!')
 
     return arith[arg](first, second)
+
+def evaluate(expression):
+    """This function takes in a string as input, and evaluates it as an expression
+    returns the result 
+    # expression will also be able to make use of my custom functions 
+    the 'eval' function from std library is used. certain precautions are made to prevent executing certain code
+    """
+    # makes sure only valid inputs are given
+    try:
+        return eval(expression, {'__builtins__': None}, arith)
+    except:
+        raise ValueError('Expression contains invalid input!!.')
+
+def ev_mod():
+    """Enters evaluate mode.
+    One would freely be able to evaluate expressions like in a python interpreter, but with a lot of restrictions
+    """
+    while True:
+        print(f'You\'re in "evaluate" mode!.\nPress "q" to exit.')
+        input_ = input('Type an expression: ')
+        if input_ == 'q':
+            break
+        else:
+            print(evaluate(input_))
+
 
 def boolean(*args):
     """This function performs basic boolean operations on numbers.
     it expects two numbers and an argument parameter to determine which operation to perfom.
     returns the result.
-    """
-
-def evaluate(string):
-    """This function takes in a string as input, and evaluates it as an expression
-    returns the result 
     """
 
 def var(name, value):
@@ -69,5 +89,5 @@ if __name__ == '__main__' :
     other environments can be specified.
     """
 
-    arithmetic(4,25,235)
+    ev_mod()    
 
